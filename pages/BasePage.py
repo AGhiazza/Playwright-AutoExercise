@@ -7,43 +7,43 @@ class BasePage:
 
     @property
     def nav_home_link(self):
-        return self.page.locator()
+        return self.page.locator(".nav.navbar-nav a[href='/']")
     
     @property
     def nav_products_link(self):
-        return self.page.locator()
+        return self.page.locator("a[href='/products']")
 
     @property
     def nav_cart_link(self):
-        return self.page.locator()
+        return self.page.locator(".nav.navbar-nav a[href='/view_cart']")
 
     @property
     def nav_login_link(self):
-        return self.page.locator()
+        return self.page.locator("a[href='/login']")
 
     @property
     def nav_contact_link(self):
-        return self.page.locator()
+        return self.page.locator("a[href='/contact_us']")
 
     @property
     def logout_button(self):
-        return self.page.locator()
+        return self.page.locator("a[href='/logout']")
 
     @property
     def delete_account_button(self):
-        return self.page.locator()
+        return self.page.locator("a[href='/delete_account']")
     
     @property
     def logged_username(self):
-        return self.page.locator()
+        return self.page.locator(".nav.navbar-nav a b")
     
     @property
     def subscription_email_input(self):
-        return self.page.locator()
+        return self.page.locator("#susbscribe_email")
     
     @property
     def subscription_submit_button(self):
-        return self.page.locator()
+        return self.page.locator("#subscribe")
 
 
     # Header Navigation Methods
@@ -69,16 +69,17 @@ class BasePage:
     def click_on_delete_account (self):
         self.delete_account_button.click()
 
-    def get_logged_in_username (self, user): #Gets the username in the header that is currently logged in
+    def get_logged_in_username (self): #Gets the username in the header that is currently logged in
         return self.logged_username.inner_text()
 
     # Sidebar Methods
 
     def navigate_to_category(self, category, subcategory):
-
+        self.page.locator(f"a:has-text('{category}')").click()
+        self.page.locator(f"#{category} a:has-text('{subcategory}')").click()
 
     def click_on_brand(self, brand):
-
+        self.page.locator(f".brands-name a:has-text('{brand}')").click()
         
     # Footer Subscription Methods
 
