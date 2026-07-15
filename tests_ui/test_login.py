@@ -23,7 +23,10 @@ def test_LO03_login_attempt_wrong_credentials(page):
     error_message = login_page.get_login_error_message()
     assert error_message == "Your email or password is incorrect!"
 
-'''
+
 def test_LO04_successful_logout(page):
     login_page = LoginPage(page)
-    '''    
+    page.goto("https://automationexercise.com/login")
+    login_page.login("aghiazzabna@gmail.com","Test")
+    login_page.click_on_logout()
+    assert not login_page.logout_button.is_visible()
