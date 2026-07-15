@@ -34,7 +34,7 @@ class BasePage:
         return self.page.locator("a[href='/delete_account']")
     
     @property
-    def logged_username(self):
+    def logged_username(self):  #"Logged in as *****"
         return self.page.locator(".nav.navbar-nav a b")
     
     @property
