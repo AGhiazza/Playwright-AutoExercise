@@ -1,11 +1,15 @@
 import pytest
 from pages.login_page import LoginPage
+from utils.data_reader import read_json
+
+test_data = read_json("test_data.json")
 
 @pytest.mark.ui
 def test_LO01_successful_login(page):
     login_page = LoginPage(page)
     page.goto("https://automationexercise.com/login")
-    login_page.login("aghiazzabna@gmail.com","Test")
+    valid_user = test_data["valid_user"]
+    login_page.login(valid_user["email"], valid_user["password"])
     username = login_page.get_logged_in_username() #Calls the method that gets the text in the "Logged in as *username*" locator
     assert username == "Cosme fulano"
 
@@ -19,7 +23,8 @@ def test_LO02_login_attempt_empty_fields(page):
 def test_LO03_login_attempt_wrong_credentials(page):
     login_page = LoginPage(page)
     page.goto("https://automationexercise.com/login")
-    login_page.login("email@invalid.com","invalid_pass")
+    invalid_user = test_data["invalid_user"]
+    login_page.login(invalid_user["email"], invalid_user["password"])
     error_message = login_page.get_login_error_message()
     assert error_message == "Your email or password is incorrect!"
 
@@ -27,6 +32,7 @@ def test_LO03_login_attempt_wrong_credentials(page):
 def test_LO04_successful_logout(page):
     login_page = LoginPage(page)
     page.goto("https://automationexercise.com/login")
-    login_page.login("aghiazzabna@gmail.com","Test")
+    valid_user = test_data["valid_user"]
+    login_page.login(valid_user["email"], valid_user["password"])
     login_page.click_on_logout()
     assert not login_page.logout_button.is_visible()
