@@ -7,7 +7,7 @@ test_data = read_json("test_data.json")
 @pytest.mark.ui
 def test_LO01_successful_login(page):
     login_page = LoginPage(page)
-    page.goto("https://automationexercise.com/login")
+    page.goto("/login")
     valid_user = test_data["valid_user"]
     login_page.login(valid_user["email"], valid_user["password"])
     username = login_page.get_logged_in_username() #Calls the method that gets the text in the "Logged in as *username*" locator
@@ -16,13 +16,13 @@ def test_LO01_successful_login(page):
 @pytest.mark.skip(reason="Browser-native validation, not application logic. Covered at API level.")
 def test_LO02_login_attempt_empty_fields(page):
     login_page = LoginPage(page)
-    page.goto("https://automationexercise.com/login")
+    page.goto("/login")
     login_page.login_button.click()
     
 
 def test_LO03_login_attempt_wrong_credentials(page):
     login_page = LoginPage(page)
-    page.goto("https://automationexercise.com/login")
+    page.goto("/login")
     invalid_user = test_data["invalid_user"]
     login_page.login(invalid_user["email"], invalid_user["password"])
     error_message = login_page.get_login_error_message()
@@ -31,7 +31,7 @@ def test_LO03_login_attempt_wrong_credentials(page):
 
 def test_LO04_successful_logout(page):
     login_page = LoginPage(page)
-    page.goto("https://automationexercise.com/login")
+    page.goto("/login")
     valid_user = test_data["valid_user"]
     login_page.login(valid_user["email"], valid_user["password"])
     login_page.click_on_logout()
