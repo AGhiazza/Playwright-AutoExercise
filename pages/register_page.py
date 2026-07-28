@@ -80,11 +80,24 @@ class RegisterPage(BasePage):
 
     ##Account Information Methods
 
-    def fill_account_info(self):
+    def fill_account_info(self, password, name=None, email=None):
+        if name:
+            self.acc_name.fill(name)
+        if email:
+            self.acc_email.fill(email)
+        self.acc_password.fill(password)
 
     ##Address Information Methods
 
-    def fill_address_info(self): 
+    def fill_address_info(self, name, lastname, address, country, state, city, zipcode, mobile):
+        self.address_info_name.fill(name)
+        self.address_info_lastname.fill(lastname)
+        self.address_info_address.fill(address)
+        self.address_info_country.select_option(country)
+        self.address_info_state.fill(state)
+        self.address_info_city.fill(city)
+        self.address_info_zipcode.fill(zipcode)
+        self.address_info_mobile_number.fill(mobile)
 
     def click_on_create_account(self):
         self.create_account_button.click()
