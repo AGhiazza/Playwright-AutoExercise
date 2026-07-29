@@ -6,5 +6,18 @@
     "invalid_user": {
         "email": "wrong@email.com",
         "password": "wrongpassword"
+    },
+    "register_user_data": {
+    "name": "Juancho",
+    "email": "newuser@testemail.com",
+    "password": "PassTest",
+    "firstname": "Juan",
+    "lastname": "Gallo",
+    "address": "595 Market St",
+    "country": "United States",
+    "state": "California",
+    "city": "San Francisco",
+    "zipcode": "94105",
+    "mobile": "+1 415 555-0123"
     }
 }

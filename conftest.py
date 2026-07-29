@@ -1,7 +1,26 @@
 import pytest
 from utils.data_reader import read_json
 
-@pytest.fixture(scope="session")
-def base_url():
-    config = read_json("config.json")
-    return config["base_url"]
+test_data = read_json("test_data.json")
+user_data = test_data["register_user_data"]
+
+@pytest.fixture
+def registered_user(page):
+    # Setup — Creates a user via API
+    page.request.post("https://automationexercise.com/api/createAccount", form={
+        "name": user_data["name"], 
+        "email": user_data["email"], 
+        "password": user_data["password"], 
+        "firstname": user_data["firstname"], 
+        "lastname": user_data["lastname"], 
+        "address1": user_data["address"], 
+        "country": user_data["country"], 
+        "zipcode": user_data["zipcode"], 
+        "state": user_data["state"], 
+        "city": user_data["city"], 
+        "mobile_number": user_data["mobile"]})
+    
+    yield  # Test Run
+    
+    # Teardown — Deletes the user via API
+    page.request.delete("https://automationexercise.com/api/deleteAccount", form={"email": user_data["email"], "password": user_data["password"]})
