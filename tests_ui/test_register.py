@@ -1,4 +1,3 @@
-import pytest
 from pages.login_page import LoginPage
 from pages.register_page import RegisterPage
 from utils.data_reader import read_json
@@ -17,7 +16,7 @@ def test_RE01_register_new_user(page):
     register_page.fill_address_info(user_data["firstname"], user_data["lastname"], user_data["address"], user_data["country"], user_data["state"], user_data["city"], user_data["zipcode"], user_data["mobile"])
     register_page.click_on_create_account()
     assert register_page.account_created_message.is_visible()
-    page.request.delete("https://automationexercise.com/api/deleteAccount", form={"email": user_data["email"], "password": user_data["password"]})
+    #page.request.delete("https://automationexercise.com/api/deleteAccount", form={"email": user_data["email"], "password": user_data["password"]})
 
 
 def test_RE02_attempt_register_with_existing_email(page): 

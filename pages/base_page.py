@@ -34,6 +34,10 @@ class BasePage:
         return self.page.locator("a[href='/delete_account']")
     
     @property
+    def account_deleted_message(self): #Message displayed when an account is deleted in the /delete_account URL, it's here since there is no point in creating a class exclusively for it (DeletePage)
+        return self.page.locator("[data-qa='account-deleted']")
+    
+    @property
     def logged_username(self):  #"Logged in as *****"
         return self.page.locator(".nav.navbar-nav a b")
     
