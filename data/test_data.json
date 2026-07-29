@@ -1,5 +1,6 @@
 {
     "valid_user": {
+        "name": "Cosme fulano",
         "email": "aghiazzabna@gmail.com",
         "password": "Test"
     },
