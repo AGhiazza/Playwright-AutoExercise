@@ -4,6 +4,7 @@ from utils.data_reader import read_json
 
 test_data = read_json("navigation_data.json")
 categories = [(item["category"], item["subcategory"]) for item in test_data["categories"]]
+brands = test_data["brands"]
 
 @pytest.fixture
 def page(context_no_ads):
@@ -19,7 +20,14 @@ def test_NA01_navigate_to_category(page, category, subcategory):
     breadcrumb_text = products_page.category_breadcrumb.inner_text()
     assert category in breadcrumb_text and subcategory in breadcrumb_text
 
-#def test_NA02_navigate_to_brand():
+@pytest.mark.parametrize("brand", brands)
+def test_NA02_navigate_to_brand(page, brand):
+    products_page = ProductsPage (page)
+    page.goto("/products")
+    products_page.click_on_brand(brand)
+    breadcrumb_text = products_page.category_breadcrumb.inner_text()
+    assert brand in breadcrumb_text
+
 
 #def test_NA03_navigate_to_product detail():
 

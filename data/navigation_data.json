@@ -7,5 +7,7 @@
         {"category": "Men", "subcategory": "Jeans"},
         {"category": "Kids", "subcategory": "Dress"},
         {"category": "Kids", "subcategory": "Tops & Shirts"}
-    ]
+    ],
+    "brands": ["Polo", "H&M", "Madame", "Mast & Harbour", "Babyhug", "Allen Solly Junior", "Kookie Kids", "Biba"]
 }
+
