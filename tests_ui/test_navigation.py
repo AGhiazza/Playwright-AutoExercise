@@ -1,5 +1,6 @@
 import pytest
 from pages.products_page import ProductsPage
+from pages.product_detail_page import ProductDetailPage
 from utils.data_reader import read_json
 
 test_data = read_json("navigation_data.json")
@@ -28,12 +29,9 @@ def test_NA02_navigate_to_brand(page, brand):
     breadcrumb_text = products_page.category_breadcrumb.inner_text()
     assert brand in breadcrumb_text
 
-
-#def test_NA03_navigate_to_product detail():
-
-
-'''
-| UI_NA01 | Navigate to Women > Dress category (parametrized for all 7 categories) | — | Category page should be displayed. Only products matching the selected category should be displayed |
-| UI_NA02 | Navigate to a brand section (parametrized) | — | /brand_products/*brand* page should be displayed. Only products for the selected brand should be displayed |
-| UI_NA03 | Navigate to a product detail | — | Product detail page is displayed |
-'''
+def test_NA03_navigate_to_product_detail(page):
+    products_page = ProductsPage(page)
+    product_detail_page = ProductDetailPage(page)
+    page.goto("/products")
+    products_page.click_on_first_view_product_details()
+    assert product_detail_page.product_name.is_visible()
