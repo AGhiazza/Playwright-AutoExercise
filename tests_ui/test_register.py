@@ -2,7 +2,7 @@ from pages.login_page import LoginPage
 from pages.register_page import RegisterPage
 from utils.data_reader import read_json
 
-test_data = read_json("test_data.json")
+test_data = read_json("user_data.json")
 user_data = test_data["register_user_data"]
 valid_user = test_data["valid_user"]
 

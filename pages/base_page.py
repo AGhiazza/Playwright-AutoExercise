@@ -78,8 +78,18 @@ class BasePage:
 
     # Sidebar Methods
 
+    def dismiss_ad(self): #Ad dismissal method necesary for the proper navigation during tests
+        try:
+            self.page.wait_for_selector(".close-modal", timeout=3000)
+            self.page.locator(".close-modal").click()
+        except:
+            pass
+
     def navigate_to_category(self, category, subcategory):
-        self.page.locator(f"a:has-text('{category}')").click()
+        self.dismiss_ad()   #Have to call the close ad twice (before clicking the category and after) because of its random nature
+        self.page.locator(f"a[href='#{category}']").click()
+        self.dismiss_ad()
+        self.page.locator(f"#{category} a:has-text('{subcategory}')").wait_for(state="visible")
         self.page.locator(f"#{category} a:has-text('{subcategory}')").click()
 
     def click_on_brand(self, brand):

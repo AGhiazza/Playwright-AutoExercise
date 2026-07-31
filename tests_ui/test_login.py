@@ -2,7 +2,7 @@ import pytest
 from pages.login_page import LoginPage
 from utils.data_reader import read_json
 
-test_data = read_json("test_data.json")
+test_data = read_json("user_data.json")
 
 @pytest.mark.ui
 def test_LO01_successful_login(page):
