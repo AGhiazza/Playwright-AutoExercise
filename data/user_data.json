@@ -20,5 +20,6 @@
     "city": "San Francisco",
     "zipcode": "94105",
     "mobile": "+1 415 555-0123"
-    }
+    },
+    "subscription_email": "subscriptiontest@test.com"
 }

@@ -48,6 +48,10 @@ class BasePage:
     @property
     def subscription_submit_button(self):
         return self.page.locator("#subscribe")
+    
+    @property
+    def subscription_success_message(self):
+        return self.page.locator("#success-subscribe")
 
 
     # Header Navigation Methods
