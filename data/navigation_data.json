@@ -8,6 +8,8 @@
         {"category": "Kids", "subcategory": "Dress"},
         {"category": "Kids", "subcategory": "Tops & Shirts"}
     ],
-    "brands": ["Polo", "H&M", "Madame", "Mast & Harbour", "Babyhug", "Allen Solly Junior", "Kookie Kids", "Biba"]
+    "brands": ["Polo", "H&M", "Madame", "Mast & Harbour", "Babyhug", "Allen Solly Junior", "Kookie Kids", "Biba"],
+    "valid_search_term": "Blue",
+    "invalid_search_term": "invalidsearchterm"
 }
 
