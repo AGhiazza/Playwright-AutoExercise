@@ -23,3 +23,11 @@ def test_CA01_add_product_to_cart_then_login(page, testpage, registered_user):
     login_page.login(user_data["email"], user_data["password"])
     cart_page.navigate_to_cart()
     assert cart_page.first_product_name.inner_text() == first_product
+
+def test_CA02_add_product_to_cart_from_recommended_items(page):
+    home_page = HomePage(page)
+    cart_page = CartPage(page)
+    page.goto("/")
+    home_page.first_recommended_add_to_cart_button.click()
+    cart_page.view_cart_button.click()
+    assert not cart_page.empty_cart.is_visible()

@@ -9,5 +9,5 @@ class HomePage(BasePage):
     ##Recommended Items Selectors
 
     @property
-    def first_recommended_add_to_cart(self):
+    def first_recommended_add_to_cart_button(self):
         return self.page.locator("#recommended-item-carousel .add-to-cart").first
