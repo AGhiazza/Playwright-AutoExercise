@@ -25,6 +25,8 @@ class ProductsPage(BasePage):
     def search_button(self):
         return self.page.locator("#submit_search")
 
+    ##Products Selectors
+
     @property
     def products_section_title(self):
         return self.page.locator(".title.text-center")
@@ -33,7 +35,9 @@ class ProductsPage(BasePage):
     def product_cards(self):
         return self.page.locator(".productinfo")
 
-    # Navigation Methods
+    #Methods
+    
+    ##Navigation Methods
 
     def click_on_first_view_product_details(self):
         self.first_view_product_link.click()

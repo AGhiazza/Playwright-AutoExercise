@@ -12,7 +12,7 @@ class RegisterPage(BasePage):
     def create_account_button(self):
         return self.page.locator("[data-qa='create-account']")
 
-    ###Account Information Selectors
+    ##Account Information Selectors
     @property
     def acc_title_mr(self):
         return self.page.locator("#id_gender1")
@@ -33,7 +33,7 @@ class RegisterPage(BasePage):
     def acc_password(self):
         return self.page.locator("[data-qa='password']")
 
-    ###Address Information Selectors
+    ##Address Information Selectors
 
     @property
     def address_info_name(self):
@@ -67,7 +67,7 @@ class RegisterPage(BasePage):
     def address_info_mobile_number(self):
         return self.page.locator("[data-qa='mobile_number']")
     
-    ###Account Created Selectors
+    ##Account Created Selectors
 
     @property
     def account_created_message(self):
@@ -77,6 +77,7 @@ class RegisterPage(BasePage):
     def account_created_continue_button(self):
         return self.page.locator("[data-qa='continue-button']")
 
+    #Methods
 
     ##Account Information Methods
 

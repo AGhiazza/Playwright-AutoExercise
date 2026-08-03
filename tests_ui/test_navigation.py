@@ -15,7 +15,7 @@ def page(context_no_ads):
 
 @pytest.mark.parametrize("category, subcategory", categories)
 def test_NA01_navigate_to_category(page, category, subcategory):
-    products_page = ProductsPage (page)
+    products_page = ProductsPage(page)
     page.goto("/products")
     products_page.navigate_to_category(category, subcategory)
     breadcrumb_text = products_page.category_breadcrumb.inner_text()
@@ -23,7 +23,7 @@ def test_NA01_navigate_to_category(page, category, subcategory):
 
 @pytest.mark.parametrize("brand", brands)
 def test_NA02_navigate_to_brand(page, brand):
-    products_page = ProductsPage (page)
+    products_page = ProductsPage(page)
     page.goto("/products")
     products_page.click_on_brand(brand)
     breadcrumb_text = products_page.category_breadcrumb.inner_text()

@@ -34,6 +34,8 @@ class ProductDetailPage(BasePage):
     def successful_review_submission_message(self):
         return self.page.locator("#review-section .alert-success")
 
+    #Methods
+
     ##Review Methods
 
     def write_a_review(self, name, email, review):

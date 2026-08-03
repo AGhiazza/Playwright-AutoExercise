@@ -5,6 +5,8 @@ class BasePage:
 
     #Selectors
 
+    ##Header Selectors
+
     @property
     def nav_home_link(self):
         return self.page.locator(".nav.navbar-nav a[href='/']")
@@ -32,14 +34,34 @@ class BasePage:
     @property
     def delete_account_button(self):
         return self.page.locator("a[href='/delete_account']")
-    
+
+    @property
+    def logged_username(self):  #"Logged in as *****"
+        return self.page.locator(".nav.navbar-nav a b")
+
+    ##HomePage Selectors
+
+    @property
+    def first_product_name(self):
+        return self.page.locator(".productinfo p").first
+
+    @property
+    def first_product_add_to_cart_button(self):
+        return self.page.locator(".add-to-cart").first
+
+    @property
+    def view_cart_button(self):
+        return self.page.locator("#cartModal a[href='/view_cart']")
+
+    @property
+    def continue_shopping_button(self):
+        return self.page.locator(".close-modal")
+
     @property
     def account_deleted_message(self): #Message displayed when an account is deleted in the /delete_account URL, it's here since there is no point in creating a class exclusively for it (DeletePage)
         return self.page.locator("[data-qa='account-deleted']")
     
-    @property
-    def logged_username(self):  #"Logged in as *****"
-        return self.page.locator(".nav.navbar-nav a b")
+    ##Footer Selectors
     
     @property
     def subscription_email_input(self):
@@ -53,8 +75,9 @@ class BasePage:
     def subscription_success_message(self):
         return self.page.locator("#success-subscribe")
 
+    #Methods
 
-    # Header Navigation Methods
+    ##Header Navigation Methods
 
     def navigate_to_home (self):
         self.nav_home_link.click()
@@ -80,14 +103,16 @@ class BasePage:
     def get_logged_in_username (self): #Gets the username in the header that is currently logged in
         return self.logged_username.inner_text()
 
-    # Sidebar Methods
+    ##Ad Methods
 
     def dismiss_ad(self): #Ad dismissal method necesary for the proper navigation during tests
         try:
-            self.page.wait_for_selector(".close-modal", timeout=3000)
-            self.page.locator(".close-modal").click()
+            self.page.wait_for_selector("#dismiss-button", timeout=3000)
+            self.page.locator("#dismiss-button").click()
         except:
             pass
+
+    ##Sidebar Methods
 
     def navigate_to_category(self, category, subcategory):
         self.dismiss_ad()   #Have to call the close ad twice (before clicking the category and after) because of its random nature
@@ -99,7 +124,7 @@ class BasePage:
     def click_on_brand(self, brand):
         self.page.locator(f".brands-name a:has-text('{brand}')").click()
         
-    # Footer Subscription Methods
+    ##Footer Subscription Methods
 
     def subscribe (self, email):
         self.subscription_email_input.fill(email)
