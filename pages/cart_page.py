@@ -42,6 +42,6 @@ class CartPage(BasePage):
 
     @property
     def empty_cart(self):
-        return self.page.locator("#empty_cart")
+        return self.page.locator("#empty_cart p")   
 
     
