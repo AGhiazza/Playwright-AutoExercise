@@ -31,3 +31,14 @@ def test_CA02_add_product_to_cart_from_recommended_items(page):
     home_page.first_recommended_add_to_cart_button.click()
     cart_page.view_cart_button.click()
     assert not cart_page.empty_cart.is_visible()
+
+def test_CA03_add_same_product_multiple_times(page):
+    cart_page = CartPage(page)
+    page.goto("/products")
+    cart_page.first_product_add_to_cart_button.click()
+    cart_page.continue_shopping_button.click()
+    cart_page.first_product_add_to_cart_button.click()
+    cart_page.view_cart_button.click()
+    assert cart_page.product_quantity.inner_text() == "2"
+
+def test_CA04_
