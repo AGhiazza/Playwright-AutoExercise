@@ -17,6 +17,10 @@ class CartPage(BasePage):
         return self.page.locator(".cart_description h4 a").first
 
     @property
+    def first_product_price(self):
+        return self.page.locator(".cart_price").first
+
+    @property
     def first_delete_button(self):
         return self.page.locator(".cart_quantity_delete").first
 

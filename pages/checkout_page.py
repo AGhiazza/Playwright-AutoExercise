@@ -21,3 +21,7 @@ class CheckoutPage(BasePage):
         return self.page.locator("#address_delivery .address_country_name")
     
     ##Review Your Order Selectors
+
+    @property
+    def cart_total_price(self):
+        return self.page.locator("tr:has-text('Total Amount') .cart_total_price")
