@@ -8,7 +8,7 @@ from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")
 user_data = test_data["register_user_data"]
-'''
+
 @pytest.mark.parametrize("testpage", ["/", "/products"])
 def test_CA01_add_product_to_cart_then_login(page, testpage, registered_user):
     products_page = ProductsPage(page)
@@ -50,7 +50,7 @@ def test_CA04_add_product_with_quantity_from_product_detail(page):
     productdetail_page.add_to_cart_button.click()
     cart_page.view_cart_button.click()
     assert cart_page.product_quantity.inner_text() == "2"
-'''
+
 def test_CA05_remove_product_from_cart(page):
     cart_page = CartPage(page)
     page.goto("/")
@@ -58,4 +58,9 @@ def test_CA05_remove_product_from_cart(page):
     cart_page.view_cart_button.click()
     cart_page.first_delete_button.click()
     cart_page.empty_cart.wait_for(state="visible")
+    assert cart_page.empty_cart.is_visible()
+
+def test_CA06_verify_empty_cart(page):
+    cart_page = CartPage(page)
+    page.goto("/view_cart")
     assert cart_page.empty_cart.is_visible()
