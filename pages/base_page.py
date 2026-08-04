@@ -50,6 +50,10 @@ class BasePage:
         return self.page.locator(".add-to-cart").first
 
     @property
+    def first_view_product_link(self):
+        return self.page.locator("a[href*='/product_details/']").first
+
+    @property
     def view_cart_button(self):
         return self.page.locator("#cartModal a[href='/view_cart']")
 

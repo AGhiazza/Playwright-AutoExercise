@@ -11,6 +11,14 @@ class ProductDetailPage(BasePage):
     @property
     def product_name(self):
         return self.page.locator(".product-information h2")
+
+    @property
+    def add_to_cart_button(self):
+        return self.page.locator(".btn.cart")
+
+    @property
+    def quantity_input(self):
+        return self.page.locator("#quantity")
     
     ##Review Selectors
 

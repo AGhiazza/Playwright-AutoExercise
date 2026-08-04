@@ -41,4 +41,13 @@ def test_CA03_add_same_product_multiple_times(page):
     cart_page.view_cart_button.click()
     assert cart_page.product_quantity.inner_text() == "2"
 
-def test_CA04_
+def test_CA04_add_product_with_quantity_from_product_detail(page):
+    productdetail_page = ProductDetailPage(page)
+    cart_page = CartPage(page)
+    page.goto("/")
+    cart_page.first_view_product_link.click()
+    productdetail_page.quantity_input.fill("2")
+    productdetail_page.add_to_cart_button.click()
+    cart_page.view_cart_button.click()
+    assert cart_page.product_quantity.inner_text() == "2"
+    

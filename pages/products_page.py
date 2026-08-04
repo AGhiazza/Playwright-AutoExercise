@@ -11,10 +11,6 @@ class ProductsPage(BasePage):
     def category_breadcrumb(self):
         return self.page.locator(".breadcrumb .active")
 
-    @property
-    def first_view_product_link(self):
-        return self.page.locator("a[href*='/product_details/']").first
-
     ##Search Selectors
 
     @property
