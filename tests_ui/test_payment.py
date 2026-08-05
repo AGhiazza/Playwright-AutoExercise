@@ -1,3 +1,4 @@
+import pytest
 from pages.login_page import LoginPage
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
@@ -46,3 +47,6 @@ def test_PY02_download_invoice_after_successful_order(page, registered_user):
     assert user_data["firstname"] in content
     assert "Thank you" in content
   
+@pytest.mark.skip(reason="Browser-native validation, not application logic. Covered at API level.")
+def test_PY03_attempt_payment_with_empty_field(page):
+    pass
