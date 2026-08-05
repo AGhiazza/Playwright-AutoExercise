@@ -25,3 +25,7 @@ class CheckoutPage(BasePage):
     @property
     def cart_total_price(self):
         return self.page.locator("tr:has-text('Total Amount') .cart_total_price")
+
+    @property
+    def place_order_button(self):
+        return self.page.locator("a[href='/payment']")
