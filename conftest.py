@@ -43,3 +43,23 @@ def context_no_ads(browser, base_url):
         context.route(pattern, lambda route: route.abort())
     yield context
     context.close()
+
+@pytest.fixture(scope="session")
+def auth_state(browser, base_url):
+    context = browser.new_context(base_url=base_url)
+    page = context.new_page()
+    page.goto("/login")
+    page.locator("[data-qa='login-email']").fill(test_data["valid_user"]["email"])
+    page.locator("[data-qa='login-password']").fill(test_data["valid_user"]["password"])
+    page.locator("[data-qa='login-button']").click()
+    page.wait_for_load_state("networkidle")
+    context.storage_state(path="data/auth.json")
+    context.close()
+    return "data/auth.json"
+
+@pytest.fixture
+def logged_in_page(browser, base_url, auth_state):
+    context = browser.new_context(base_url=base_url, storage_state=auth_state)
+    page = context.new_page()
+    yield page
+    context.close()

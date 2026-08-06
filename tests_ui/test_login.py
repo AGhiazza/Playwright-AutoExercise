@@ -29,10 +29,8 @@ def test_LO03_login_attempt_wrong_credentials(page):
     assert error_message == "Your email or password is incorrect!"
 
 
-def test_LO04_successful_logout(page):
-    login_page = LoginPage(page)
-    page.goto("/login")
-    valid_user = test_data["valid_user"]
-    login_page.login(valid_user["email"], valid_user["password"])
+def test_LO04_successful_logout(logged_in_page):
+    login_page = LoginPage(logged_in_page)
+    logged_in_page.goto("/")
     login_page.click_on_logout()
     assert not login_page.logout_button.is_visible()
