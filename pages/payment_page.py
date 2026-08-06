@@ -45,6 +45,7 @@ class PaymentPage(BasePage):
     ##Payment Methods
 
     def fill_payment_details(self, name, card_number, cvc, month, year):
+        self.credit_card_name.wait_for(state="visible")
         self.credit_card_name.fill(name)
         self.credit_card_number.fill(card_number)
         self.credit_card_cvc.fill(cvc)

@@ -9,6 +9,7 @@ from utils.data_reader import read_json
 test_data = read_json("user_data.json")
 user_data = test_data["register_user_data"]
 
+@pytest.mark.ui
 @pytest.mark.parametrize("testpage", ["/", "/products"])
 def test_CA01_add_product_to_cart_then_login(page, testpage, registered_user):
     products_page = ProductsPage(page)
@@ -24,6 +25,7 @@ def test_CA01_add_product_to_cart_then_login(page, testpage, registered_user):
     cart_page.navigate_to_cart()
     assert cart_page.first_product_name.inner_text() == first_product
 
+@pytest.mark.ui
 def test_CA02_add_product_to_cart_from_recommended_items(page):
     home_page = HomePage(page)
     cart_page = CartPage(page)
@@ -32,6 +34,7 @@ def test_CA02_add_product_to_cart_from_recommended_items(page):
     cart_page.view_cart_button.click()
     assert not cart_page.empty_cart.is_visible()
 
+@pytest.mark.ui
 def test_CA03_add_same_product_multiple_times(page):
     cart_page = CartPage(page)
     page.goto("/products")
@@ -41,6 +44,7 @@ def test_CA03_add_same_product_multiple_times(page):
     cart_page.view_cart_button.click()
     assert cart_page.product_quantity.inner_text() == "2"
 
+@pytest.mark.ui
 def test_CA04_add_product_with_quantity_from_product_detail(page):
     productdetail_page = ProductDetailPage(page)
     cart_page = CartPage(page)
@@ -51,6 +55,7 @@ def test_CA04_add_product_with_quantity_from_product_detail(page):
     cart_page.view_cart_button.click()
     assert cart_page.product_quantity.inner_text() == "2"
 
+@pytest.mark.ui
 def test_CA05_remove_product_from_cart(page):
     cart_page = CartPage(page)
     page.goto("/")
@@ -60,6 +65,7 @@ def test_CA05_remove_product_from_cart(page):
     cart_page.empty_cart.wait_for(state="visible")
     assert cart_page.empty_cart.is_visible()
 
+@pytest.mark.ui
 def test_CA06_verify_empty_cart(page):
     cart_page = CartPage(page)
     page.goto("/view_cart")

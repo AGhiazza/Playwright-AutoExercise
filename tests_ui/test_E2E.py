@@ -15,6 +15,7 @@ payment_data = user_test_data["payment_data"]
 nav_test_data = read_json("navigation_data.json")
 valid_search_term = nav_test_data["valid_search_term"]
 
+@pytest.mark.ui
 @pytest.mark.e2e
 def test_E2E01_login_search_detail_add_checkout_payment_invoice(page, registered_user):
     login_page = LoginPage(page)
@@ -42,6 +43,7 @@ def test_E2E01_login_search_detail_add_checkout_payment_invoice(page, registered
         content = f.read()
     assert user_data["firstname"] in content
 
+@pytest.mark.ui
 @pytest.mark.e2e
 def test_E2E02_add_checkout_register_checkout_payment_delete(page):
     login_page = LoginPage(page)

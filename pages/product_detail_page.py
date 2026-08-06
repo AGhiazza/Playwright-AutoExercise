@@ -47,6 +47,7 @@ class ProductDetailPage(BasePage):
     ##Review Methods
 
     def write_a_review(self, name, email, review):
+        self.review_name.wait_for(state="visible")
         self.review_name.fill(name)
         self.review_email.fill(email)
         self.review_textbox.fill(review)
