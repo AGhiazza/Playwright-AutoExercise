@@ -11,7 +11,7 @@ def test_LO01_successful_login(page):
     valid_user = test_data["valid_user"]
     login_page.login(valid_user["email"], valid_user["password"])
     username = login_page.get_logged_in_username() #Calls the method that gets the text in the "Logged in as *username*" locator
-    assert username == "Cosme fulano"
+    assert username == "John"
 
 @pytest.mark.skip(reason="Browser-native validation, not application logic. Covered at API level.")
 def test_LO02_login_attempt_empty_fields(page):
