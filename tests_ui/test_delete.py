@@ -1,9 +1,11 @@
+import pytest
 from pages.login_page import LoginPage
 from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")
 user_data = test_data["register_user_data"]
 
+@pytest.mark.ui
 def test_DE01_delete_user(page, registered_user):
     login_page = LoginPage(page)
     page.goto("/login")

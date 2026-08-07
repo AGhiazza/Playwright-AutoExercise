@@ -8,6 +8,7 @@ from utils.data_reader import read_json
 test_data = read_json("user_data.json")
 user_data = test_data["register_user_data"]
 
+@pytest.mark.ui
 def test_CH01_attempt_checkout_with_no_signin(page):
     products_page = ProductsPage(page)
     cart_page = CartPage(page)
@@ -17,6 +18,7 @@ def test_CH01_attempt_checkout_with_no_signin(page):
     cart_page.checkout_button.click()
     assert cart_page.checkout_login_modal.is_visible()
 
+@pytest.mark.ui
 def test_CH02_verify_address_details_in_checkout(page, registered_user):
     registered_address = user_data["address"]
     login_page = LoginPage(page)

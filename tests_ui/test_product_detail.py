@@ -1,3 +1,4 @@
+import pytest
 from pages.products_page import ProductsPage
 from pages.product_detail_page import ProductDetailPage
 from utils.data_reader import read_json
@@ -5,6 +6,7 @@ from utils.data_reader import read_json
 test_data = read_json("user_data.json")
 review_data = test_data["review"]
 
+@pytest.mark.ui
 def test_PD01_write_a_review(page):
     products_page = ProductsPage (page)
     product_detail_page = ProductDetailPage(page)

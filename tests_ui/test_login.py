@@ -19,7 +19,7 @@ def test_LO02_login_attempt_empty_fields(page):
     page.goto("/login")
     login_page.login_button.click()
     
-
+@pytest.mark.ui
 def test_LO03_login_attempt_wrong_credentials(page):
     login_page = LoginPage(page)
     page.goto("/login")
@@ -28,7 +28,7 @@ def test_LO03_login_attempt_wrong_credentials(page):
     error_message = login_page.get_login_error_message()
     assert error_message == "Your email or password is incorrect!"
 
-
+@pytest.mark.ui
 def test_LO04_successful_logout(logged_in_page):
     login_page = LoginPage(logged_in_page)
     logged_in_page.goto("/")

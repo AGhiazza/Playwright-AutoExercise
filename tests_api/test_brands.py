@@ -1,15 +1,19 @@
-def test_API_SR01_search_valid_product(playwright, base_url):
+import pytest
+
+@pytest.mark.api
+def test_BR01_get_all_brands(playwright, base_url):
     api = playwright.request.new_context(base_url=base_url)
-    response = api.post("/api/searchProduct", form={"search_product": "top"})
+    response = api.get("/api/brandsList")
     assert response.status == 200
     response_json = response.json()
     assert response_json["responseCode"] == 200
     api.dispose()
 
-def test_API_SR02_search_blank_product(playwright, base_url):
+@pytest.mark.api
+def test_BR02_post_to_all_brands(playwright, base_url):
     api = playwright.request.new_context(base_url=base_url)
-    response = api.post("/api/searchProduct")
+    response = api.post("/api/brandsList", data={})
     assert response.status == 200
     response_json = response.json()
-    assert response_json["responseCode"] == 400
+    assert response_json["responseCode"] == 405
     api.dispose()

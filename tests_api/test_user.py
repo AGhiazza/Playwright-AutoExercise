@@ -1,9 +1,11 @@
+import pytest
 from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")
 user_data = test_data["register_user_data"]
 
-def test_API_US_user_account_lifecycle(playwright, base_url): #Cases US01 to US04 were combined as they follow a specific lifecycle.
+@pytest.mark.api
+def test_US_user_account_lifecycle(playwright, base_url): #Cases US01 to US04 were combined as they follow a specific lifecycle.
     api = playwright.request.new_context(base_url=base_url)
 
     # Cleanup before test (in case user exists from previous run)

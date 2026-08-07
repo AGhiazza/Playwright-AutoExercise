@@ -9,6 +9,7 @@ test_data = read_json("user_data.json")
 user_data = test_data["register_user_data"]
 payment_data = test_data["payment_data"]
 
+@pytest.mark.ui
 def test_PY01_complete_an_order(page, registered_user):
     login_page = LoginPage(page)        
     cart_page = CartPage(page)
@@ -23,6 +24,7 @@ def test_PY01_complete_an_order(page, registered_user):
     payment_page.fill_payment_details(payment_data["card_name"], payment_data["card_number"], payment_data["card_cvc"], payment_data["card_month"], payment_data["card_year"])
     assert payment_page.order_placed_message.is_visible()
 
+@pytest.mark.ui
 def test_PY02_download_invoice_after_successful_order(page, registered_user):
     login_page = LoginPage(page)        
     cart_page = CartPage(page)

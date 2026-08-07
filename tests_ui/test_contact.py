@@ -5,6 +5,7 @@ from utils.data_reader import read_json
 test_data = read_json("user_data.json")
 contact_data = test_data["contact_data"]
 
+@pytest.mark.ui
 def test_CT01_submit_contact_message(page):
     contact_page = ContactPage(page)
     page.goto("/contact_us")
