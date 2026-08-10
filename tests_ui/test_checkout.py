@@ -13,7 +13,7 @@ user_data = test_data["register_user_data"]
 def test_CH01_attempt_checkout_with_no_signin(page):
     products_page = ProductsPage(page)
     cart_page = CartPage(page)
-    logger.info("Navigating to HomePage")
+    logger.info("Navigating to home page")
     page.goto("/")
     logger.info("Adding first recommended product to cart")
     products_page.first_product_add_to_cart_button.click()
