@@ -37,7 +37,7 @@ def test_CA01_add_product_to_cart_then_login(page, testpage, registered_user):
 def test_CA02_add_product_to_cart_from_recommended_items(page):
     home_page = HomePage(page)
     cart_page = CartPage(page)
-    logger.info("Navigating to HomePage")
+    logger.info("Navigating to homepage")
     page.goto("/")
     logger.info("Adding first recommended product to cart")
     home_page.first_recommended_add_to_cart_button.click()
@@ -66,7 +66,7 @@ def test_CA03_add_same_product_multiple_times(page):
 def test_CA04_add_product_with_quantity_from_product_detail(page):
     productdetail_page = ProductDetailPage(page)
     cart_page = CartPage(page)
-    logger.info("Navigating to HomePage")
+    logger.info("Navigating to homepage")
     page.goto("/")
     logger.info("Navigating to first product's detail page")
     cart_page.first_view_product_link.click()
@@ -82,7 +82,7 @@ def test_CA04_add_product_with_quantity_from_product_detail(page):
 @pytest.mark.ui
 def test_CA05_remove_product_from_cart(page):
     cart_page = CartPage(page)
-    logger.info("Navigating to HomePage")
+    logger.info("Navigating to homepage")
     page.goto("/")
     logger.info("Adding first product to cart")
     cart_page.first_product_add_to_cart_button.click()

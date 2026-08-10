@@ -8,9 +8,13 @@ user_data = test_data["register_user_data"]
 
 @pytest.mark.ui
 def test_DE01_delete_user(page, registered_user):
-    logger.info("Starting test: test_")
     login_page = LoginPage(page)
+    logger.info("Navigating to login page")
     page.goto("/login")
+    logger.info("Login in")
     login_page.login(user_data["email"], user_data["password"])
+    logger.info("Deleting account")
     login_page.click_on_delete_account ()
+    logger.info("Verifying Account Deleted message is displayed")
     assert login_page.account_deleted_message.is_visible()
+    logger.info("Account Deleted message is displayed successfully")
