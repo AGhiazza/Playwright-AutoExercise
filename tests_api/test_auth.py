@@ -1,4 +1,5 @@
 import pytest
+from utils.logger import logger
 from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")

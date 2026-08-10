@@ -1,4 +1,5 @@
 import pytest
+from utils.logger import logger
 
 @pytest.mark.api
 def test_PL01_get_all_products(playwright, base_url):

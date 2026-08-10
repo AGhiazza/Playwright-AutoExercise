@@ -1,5 +1,6 @@
 import pytest
 from pages.contact_page import ContactPage
+from utils.logger import logger
 from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")
@@ -7,6 +8,7 @@ contact_data = test_data["contact_data"]
 
 @pytest.mark.ui
 def test_CT01_submit_contact_message(page):
+    logger.info("Starting test: test_")
     contact_page = ContactPage(page)
     page.goto("/contact_us")
     page.on("dialog", lambda dialog: dialog.accept()) #Clicks OK on JavaScript message

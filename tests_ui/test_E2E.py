@@ -6,6 +6,7 @@ from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.payment_page import PaymentPage
 from pages.register_page import RegisterPage
+from utils.logger import logger
 from utils.data_reader import read_json
 
 user_test_data = read_json("user_data.json")
@@ -18,6 +19,7 @@ valid_search_term = nav_test_data["valid_search_term"]
 @pytest.mark.ui
 @pytest.mark.e2e
 def test_E2E01_login_search_detail_add_checkout_payment_invoice(page, registered_user):
+    logger.info("Starting test: test_")
     login_page = LoginPage(page)
     products_page = ProductsPage(page)
     productdetail_page = ProductDetailPage(page)
@@ -46,6 +48,7 @@ def test_E2E01_login_search_detail_add_checkout_payment_invoice(page, registered
 @pytest.mark.ui
 @pytest.mark.e2e
 def test_E2E02_add_checkout_register_checkout_payment_delete(page):
+    logger.info("Starting test: test_")
     login_page = LoginPage(page)
     register_page = RegisterPage(page)
     cart_page = CartPage(page)

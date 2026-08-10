@@ -1,6 +1,7 @@
 import pytest
 from pages.products_page import ProductsPage
 from pages.product_detail_page import ProductDetailPage
+from utils.logger import logger
 from utils.data_reader import read_json
 
 test_data = read_json("navigation_data.json")
@@ -16,6 +17,7 @@ def page(context_no_ads):
 @pytest.mark.ui
 @pytest.mark.parametrize("category, subcategory", categories)
 def test_NA01_navigate_to_category(page, category, subcategory):
+    logger.info("Starting test: test_")
     products_page = ProductsPage(page)
     page.goto("/products")
     products_page.navigate_to_category(category, subcategory)
@@ -25,6 +27,7 @@ def test_NA01_navigate_to_category(page, category, subcategory):
 @pytest.mark.ui
 @pytest.mark.parametrize("brand", brands)
 def test_NA02_navigate_to_brand(page, brand):
+    logger.info("Starting test: test_")
     products_page = ProductsPage(page)
     page.goto("/products")
     products_page.click_on_brand(brand)
@@ -33,6 +36,7 @@ def test_NA02_navigate_to_brand(page, brand):
 
 @pytest.mark.ui
 def test_NA03_navigate_to_product_detail(page):
+    logger.info("Starting test: test_")
     products_page = ProductsPage(page)
     product_detail_page = ProductDetailPage(page)
     page.goto("/products")

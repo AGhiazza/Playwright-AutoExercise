@@ -1,4 +1,5 @@
 import pytest
+from utils.logger import logger
 from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")
@@ -63,3 +64,7 @@ def logged_in_page(browser, base_url, auth_state):
     page = context.new_page()
     yield page
     context.close()
+
+def pytest_runtest_logreport(report): #hook for logging errors
+    if report.failed:
+        logger.error(f"FAILED: {report.nodeid}")

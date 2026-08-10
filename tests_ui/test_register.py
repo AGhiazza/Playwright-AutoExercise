@@ -1,6 +1,7 @@
 import pytest
 from pages.login_page import LoginPage
 from pages.register_page import RegisterPage
+from utils.logger import logger
 from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")
@@ -9,6 +10,7 @@ valid_user = test_data["valid_user"]
 
 @pytest.mark.ui
 def test_RE01_register_new_user(page):
+    logger.info("Starting test: test_")
     login_page = LoginPage(page)
     register_page = RegisterPage (page)
     page.goto("/login")
@@ -22,6 +24,7 @@ def test_RE01_register_new_user(page):
 
 @pytest.mark.ui
 def test_RE02_attempt_register_with_existing_email(page): 
+    logger.info("Starting test: test_")
     login_page = LoginPage(page)
     page.goto("/login")
     login_page.signup(valid_user["name"], valid_user["email"])

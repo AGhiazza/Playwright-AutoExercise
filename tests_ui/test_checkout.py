@@ -3,6 +3,7 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
+from utils.logger import logger
 from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")
@@ -10,6 +11,7 @@ user_data = test_data["register_user_data"]
 
 @pytest.mark.ui
 def test_CH01_attempt_checkout_with_no_signin(page):
+    logger.info("Starting test: test_")
     products_page = ProductsPage(page)
     cart_page = CartPage(page)
     page.goto("/")
@@ -20,6 +22,7 @@ def test_CH01_attempt_checkout_with_no_signin(page):
 
 @pytest.mark.ui
 def test_CH02_verify_address_details_in_checkout(page, registered_user):
+    logger.info("Starting test: test_")
     registered_address = user_data["address"]
     login_page = LoginPage(page)
     products_page = ProductsPage(page)
@@ -35,6 +38,7 @@ def test_CH02_verify_address_details_in_checkout(page, registered_user):
     assert checkout_address == registered_address
 
 def test_CH03_verify_total_amount_in_checkout(page, registered_user):
+    logger.info("Starting test: test_")
     login_page = LoginPage(page)
     cart_page = CartPage(page)
     checkout_page = CheckoutPage(page)

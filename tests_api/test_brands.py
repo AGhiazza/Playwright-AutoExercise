@@ -1,4 +1,5 @@
 import pytest
+from utils.logger import logger
 
 @pytest.mark.api
 def test_BR01_get_all_brands(playwright, base_url):

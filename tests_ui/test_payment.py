@@ -3,6 +3,7 @@ from pages.login_page import LoginPage
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.payment_page import PaymentPage
+from utils.logger import logger
 from utils.data_reader import read_json
 
 test_data = read_json("user_data.json")
@@ -11,6 +12,7 @@ payment_data = test_data["payment_data"]
 
 @pytest.mark.ui
 def test_PY01_complete_an_order(page, registered_user):
+    logger.info("Starting test: test_")
     login_page = LoginPage(page)        
     cart_page = CartPage(page)
     checkout_page = CheckoutPage(page)
@@ -26,6 +28,7 @@ def test_PY01_complete_an_order(page, registered_user):
 
 @pytest.mark.ui
 def test_PY02_download_invoice_after_successful_order(page, registered_user):
+    logger.info("Starting test: test_")
     login_page = LoginPage(page)        
     cart_page = CartPage(page)
     checkout_page = CheckoutPage(page)
