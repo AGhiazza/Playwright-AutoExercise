@@ -51,7 +51,7 @@ def test_CH03_verify_total_amount_in_checkout(page, registered_user):
     login_page = LoginPage(page)
     cart_page = CartPage(page)
     checkout_page = CheckoutPage(page)
-    logger.info("Navigating to LoginPage")
+    logger.info("Navigating to login page")
     page.goto("/login")
     logger.info("Login in")
     login_page.login(user_data["email"], user_data["password"])

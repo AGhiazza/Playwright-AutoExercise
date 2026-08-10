@@ -12,45 +12,62 @@ payment_data = test_data["payment_data"]
 
 @pytest.mark.ui
 def test_PY01_complete_an_order(page, registered_user):
-    logger.info("Starting test: test_")
     login_page = LoginPage(page)        
     cart_page = CartPage(page)
     checkout_page = CheckoutPage(page)
     payment_page = PaymentPage(page)
+    logger.info("Navigating to login page")
     page.goto("/login")
+    logger.info("Login in")
     login_page.login(user_data["email"], user_data["password"])
+    logger.info("Adding first product to cart")
     cart_page.first_product_add_to_cart_button.click()
+    logger.info("Navigating to cart")
     cart_page.view_cart_button.click()
+    logger.info("Navigating to checkout")
     cart_page.checkout_button.click()
+    logger.info("Navigating to payment page")
     checkout_page.place_order_button.click()
+    logger.info("Filling payment details and submitting")
     payment_page.fill_payment_details(payment_data["card_name"], payment_data["card_number"], payment_data["card_cvc"], payment_data["card_month"], payment_data["card_year"])
+    logger.info("Verifying Order Placed message")
     assert payment_page.order_placed_message.is_visible()
+    logger.info("Order Placed message is displayed successfully")
 
 @pytest.mark.ui
 def test_PY02_download_invoice_after_successful_order(page, registered_user):
-    logger.info("Starting test: test_")
     login_page = LoginPage(page)        
     cart_page = CartPage(page)
     checkout_page = CheckoutPage(page)
     payment_page = PaymentPage(page)
+    logger.info("Navigating to login page")
     page.goto("/login")
+    logger.info("Login in")
     login_page.login(user_data["email"], user_data["password"])
+    logger.info("Adding first product to cart")
     cart_page.first_product_add_to_cart_button.click()
+    logger.info("Navigating to cart")
     cart_page.view_cart_button.click()
     first_product_price = cart_page.first_product_price.inner_text() #Saves product price
     price_number = first_product_price.replace("Rs. ", "") #Cleans currency symbol
+    logger.info("Navigating to checkout")
     cart_page.checkout_button.click()
+    logger.info("Navigating to payment page")
     checkout_page.place_order_button.click()
+    logger.info("Filling payment details and submitting")
     payment_page.fill_payment_details(payment_data["card_name"], payment_data["card_number"], payment_data["card_cvc"], payment_data["card_month"], payment_data["card_year"])
+    logger.info("Downloading invoice")
     with page.expect_download() as download_info:
         payment_page.download_invoice_button.click()
     download = download_info.value
     download_path = download.path()
     with open(download_path, "r") as f:
         content = f.read()
+    logger.info("Verifying invoice")
     assert price_number in content 
     assert user_data["firstname"] in content
     assert "Thank you" in content
+    logger.info("Invoice with correct information downloaded")
   
 @pytest.mark.skip(reason="Browser-native validation, not application logic. Covered at API level.")
 def test_PY03_attempt_payment_with_empty_field(page):
