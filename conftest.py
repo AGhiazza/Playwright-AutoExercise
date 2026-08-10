@@ -65,6 +65,12 @@ def logged_in_page(browser, base_url, auth_state):
     yield page
     context.close()
 
+@pytest.fixture(autouse=True) 
+def log_test_name(request):     #hook for parametrizing the beginning and end of tests in the logger
+    logger.info(f"== Starting test: {request.node.name} ==")
+    yield
+    logger.info(f"== Finished test: {request.node.name} ==")
+
 def pytest_runtest_logreport(report): #hook for logging errors
-    if report.failed:
+    if report.when == "call" and report.failed:
         logger.error(f"FAILED: {report.nodeid}")

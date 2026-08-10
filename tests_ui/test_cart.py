@@ -13,7 +13,6 @@ user_data = test_data["register_user_data"]
 @pytest.mark.ui
 @pytest.mark.parametrize("testpage", ["/", "/products"])
 def test_CA01_add_product_to_cart_then_login(page, testpage, registered_user):
-    logger.info(f"Starting test: CA01 - Add product to cart from {testpage}, then login")
     products_page = ProductsPage(page)
     cart_page = CartPage(page)
     login_page = LoginPage(page)
@@ -36,7 +35,6 @@ def test_CA01_add_product_to_cart_then_login(page, testpage, registered_user):
 
 @pytest.mark.ui
 def test_CA02_add_product_to_cart_from_recommended_items(page):
-    logger.info("Starting test: CA02 - Add product to cart from recommended items")
     home_page = HomePage(page)
     cart_page = CartPage(page)
     logger.info("Navigating to HomePage")
@@ -50,7 +48,6 @@ def test_CA02_add_product_to_cart_from_recommended_items(page):
 
 @pytest.mark.ui
 def test_CA03_add_same_product_multiple_times(page):
-    logger.info("Starting test: CA03 - Add the same product to cart multiple times")
     cart_page = CartPage(page)
     logger.info("Navigating to Products")
     page.goto("/products")
@@ -67,7 +64,6 @@ def test_CA03_add_same_product_multiple_times(page):
 
 @pytest.mark.ui
 def test_CA04_add_product_with_quantity_from_product_detail(page):
-    logger.info("Starting test: CA04 - Add multiple of the same product from product_detail")
     productdetail_page = ProductDetailPage(page)
     cart_page = CartPage(page)
     logger.info("Navigating to HomePage")
@@ -85,7 +81,6 @@ def test_CA04_add_product_with_quantity_from_product_detail(page):
 
 @pytest.mark.ui
 def test_CA05_remove_product_from_cart(page):
-    logger.info("Starting test: CA05 - Remove a product from cart")
     cart_page = CartPage(page)
     logger.info("Navigating to HomePage")
     page.goto("/")
@@ -102,7 +97,6 @@ def test_CA05_remove_product_from_cart(page):
 
 @pytest.mark.ui
 def test_CA06_verify_empty_cart(page):
-    logger.info("Starting test: CA06 - Verify empty cart page")
     cart_page = CartPage(page)
     logger.info("Navigating to cart")
     page.goto("/view_cart")
