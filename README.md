@@ -245,7 +245,16 @@ Playwright is configured to capture screenshots automatically when a test fails.
 
 ## CI/CD
 
-> GitHub Actions configuration coming soon.
+This project uses **GitHub Actions** for continuous integration. The pipeline runs automatically on every push and pull request to `main`.
+
+### What it does
+1. Sets up Python 3.13 on Ubuntu
+2. Installs all dependencies from `requirements.txt`
+3. Installs Chromium browser via Playwright
+4. Runs the full test suite (`pytest`)
+5. Uploads Allure results as a downloadable artifact
+
+The workflow file is located at `.github/workflows/ci.yml`.
 
 ---
 
