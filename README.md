@@ -266,6 +266,16 @@ The workflow file is located at `.github/workflows/ci.yml`.
 
 **Ad interference:** The site displays aggressive third-party ads that can occasionally interfere with UI interactions. The `context_no_ads` fixture in `conftest.py` blocks known ad domains for navigation tests. A `dismiss_ad()` method in `BasePage` handles ads that appear during interactions. Some residual flakiness may occur due to ads from unblocked domains.
 
+### CI/CD Limitations
+
+The CI pipeline runs the full test suite on every push, but may report failures due to limitations inherent to the practice site:
+
+- **Third-party ads** interfere with UI interactions in headless mode on GitHub's runner network.
+- **Session persistence** — the site's user accounts and sessions are shared and may be affected by other users or previous runs.
+- **Network latency** — GitHub's runner network may cause timeouts on a site not designed for CI environments.
+
+The first CI run (CI #1) completed successfully and serves as baseline evidence of suite stability. Local execution consistently achieves 100% pass rate on a clean run.
+
 ### API Defects Found
 
 During API testing, the following discrepancies were identified between the documented behavior and the actual API responses. All HTTP responses return status 200 regardless of the operation result; the actual response code is included in the JSON body under `responseCode`.
